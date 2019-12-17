@@ -1,0 +1,73 @@
+
+
+<template lang="html">
+  <div class="col-md-8 col-lg-6">
+    <div class="card mb-0">
+      <div class="card-header">
+        {{ count.name }} - {{ point.name }}
+      </div>
+      <div class="card-body p-0">
+        <div class="row no-gutters">
+          <button-counter v-for="(button, index) in point.buttons" :key="button.id" :button="button" :done="point.done" @button-click="registerClick(index)">{{ index }}</button-counter>
+        </div>
+      </div>
+      <button class="btn btn-primary d-md-none" @click="endCount">Terminer</button>
+    </div>
+    <a class="btn btn-block btn-secondary d-none d-lg-block" :href="downloadPoint" download="point.csv"><i class="fas fa-file-download fa-2x"></i></a>
+  </div>
+</template>
+
+<script>
+export default {
+  props: ['countIndex','pointIndex'],
+  data: function () {
+    return {
+      count: {},
+      point: {}
+    }
+  },
+  computed: {
+    downloadPoint: function() {
+      const btnsArr = this.point.buttons;
+      let dData = 'data:text/csv;sep=;charset=utf-8,%EF%BB%B \r\n';
+      btnsArr.forEach(el=> {
+        const csvRow = el.name + ';' + el.clicks.join(';') + '\r\n';
+        dData += csvRow;
+      });
+
+      const blob = new Blob([dData], {type: 'text/csv'});
+      const url = window.URL.createObjectURL(blob);
+
+      return url
+    }
+  },
+  methods: {
+    registerClick: function(index) {
+      const clickTime = new Date();
+      const stringClickTime = clickTime.getDay().toString() + '-'
+      + clickTime.getMonth().toString() + '-'
+      + clickTime.getMonth().toString() + ' '
+      + clickTime.getHours().toString() + ':'
+      + clickTime.getMinutes().toString() + ':'
+      + clickTime.getSeconds().toString();
+
+
+      this.point.buttons[index].clicks.push(stringClickTime);
+    },
+    endCount: function() {
+      db.put(this.count)
+      .then(() => {
+        router.push('/');
+      }).catch(err => console.log(err) );
+    }
+  },
+  created: async function() {
+    store.counts = await store.fetchAllDocs();
+    this.count = store.counts[this.countIndex],
+    this.point = store.counts[this.countIndex].points[this.pointIndex]
+  },
+}
+</script>
+
+<style lang="css" scoped>
+</style>
