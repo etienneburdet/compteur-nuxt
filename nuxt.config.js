@@ -1,5 +1,6 @@
 
 export default {
+  plugins: ['~/plugins/pouchdb.js'],
   mode: 'universal',
   /*
   ** Headers of the page

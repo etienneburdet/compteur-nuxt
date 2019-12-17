@@ -2,6 +2,7 @@
   <div class="container">
     <nuxt-link to='counts/1'>Count 1 index</nuxt-link>
     <nuxt-link to='counts/2'>Count 2 index</nuxt-link>
+    {{ counts }}
   </div>
 </template>
 
@@ -11,6 +12,11 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  data () {
+    const counts = this.$fetchAllDocs();
+    debugger
+    return counts
   }
 }
 </script>
