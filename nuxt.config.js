@@ -1,10 +1,13 @@
+require('dotenv').config()
 
 export default {
-  plugins: ['~/plugins/pouchdb.js'],
   mode: 'universal',
   /*
   ** Headers of the page
   */
+  env: {
+    cloudantURL: process.env.CLOUDANT_URL
+  },
   head: {
     title: process.env.npm_package_name || '',
     meta: [
@@ -29,6 +32,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/pouchdb.js'
   ],
   /*
   ** Nuxt.js dev-modules
