@@ -24,4 +24,4 @@ const fetchAllDocs = () => {
       .catch(console.log.bind(console));
 }
 
-Vue.prototype.$fetchAllDocs = fetchAllDocs
+export { db, fetchAllDocs }

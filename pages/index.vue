@@ -8,15 +8,15 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { fetchAllDocs }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
     Logo
   },
-  data () {
-    const counts = this.$fetchAllDocs();
-    debugger
-    return counts
+  async asyncData() {
+    const counts = await fetchAllDocs()
+    return { counts }
   }
 }
 </script>
