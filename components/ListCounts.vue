@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="col-md-8 col-lg-6">
     <ul class="list-group">
-      <li v-for="(count, countIndex) in counts" class="list-group-item">
+      <li v-for="count in counts" class="list-group-item">
         <div data-toggle="collapse" :data-target="'#' + count._id">
           {{ count.name }}
           <button @click="deleteDoc(count)" class="btn btn-light" style="float: right;">
