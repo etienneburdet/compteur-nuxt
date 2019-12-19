@@ -12,7 +12,7 @@ import { addDoc, monitorChangse, fetchAllDocs }  from '~/plugins/pouchdb.js'
 
 const getNewCount = (countName) => {
   const newCount = {
-    _id: `count:${countName}-${Date.now()}`,
+    _id: `count:${Date.now()}-${countName}`,
     name: countName
   }
   return newCount
@@ -37,7 +37,7 @@ export default {
     async addCount() {
       const newCount = getNewCount(this.newCountName)
       await addDoc(newCount)
-      this.counts.push(newCount)
+      this.counts = await fetchAllDocs()
     } 
   }
 }
