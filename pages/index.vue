@@ -1,33 +1,44 @@
 <template>
   <b-container>
     <CountsList :counts="counts"/>
-    <AddToList v-model="newPointName">+</AddToList>
+    <AddToList v-model="newCountName" @save="addCount">+</AddToList>
   </b-container>
 </template>
 
 <script>
-import Logo              from '~/components/Logo.vue'
-import CountsList        from '~/components/CountsList.vue'
-import AddToList         from '~/components/AddToList.vue'
-import { fetchAllDocs }  from '~/plugins/pouchdb.js'
+import CountsList from '~/components/CountsList.vue'
+import  AddToList from '~/components/AddToList.vue'
+import { addDoc, monitorChangse, fetchAllDocs }  from '~/plugins/pouchdb.js'
+
+const getNewCount = (countName) => {
+  const newCount = {
+    _id: `count:${countName}-${Date.now()}`,
+    name: countName
+  }
+  return newCount
+}
 
 export default {
   components: {
-    Logo,
     CountsList,
     AddToList
   },
   data() {
     return {
-      newPointName: 'Nouveau Point'
+      newCountName: 'Nouveau Comptage',
+      counts: []
     }
   },
   async asyncData() {
     const counts = await fetchAllDocs()
     return { counts }
   },
-  methods: {
-
+  methods: {
+    async addCount() {
+      const newCount = getNewCount(this.newCountName)
+      await addDoc(newCount)
+      this.counts.push(newCount)
+    } 
   }
 }
 </script>

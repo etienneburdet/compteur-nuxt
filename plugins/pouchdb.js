@@ -24,4 +24,17 @@ const fetchAllDocs = () => {
       .catch(console.log.bind(console));
 }
 
-export { db, fetchAllDocs }
+const monitorChange = () => {
+  debugger
+  db.changes({live: true, since: 'now'})
+    .on('change', () => fetchAllDocs())
+    .on('error', console.log.bind(console));
+}
+
+const addDoc = async (doc) => {
+  await db.put(doc)
+  const newNewDocs = await fetchAllDocs()
+  return newNewDocs
+}
+
+export { monitorChange, addDoc, fetchAllDocs }

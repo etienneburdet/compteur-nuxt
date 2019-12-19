@@ -4,7 +4,7 @@
       <div v-if="editing == true" class="input-group mb-3">
         <input :value="value" @input="$emit('input', $event.target.value)" class="form-control" type="text">
         <div class="input-group-append">
-          <button @click="editing = false; $emit('save')" class="btn btn-secondary">OK</button>
+          <button @click="$emit('save'); editing=false" class="btn btn-secondary">OK</button>
           <button @click="editing = false" class="btn btn-secondary">X</button>
         </div>
       </div>
