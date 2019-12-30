@@ -1,18 +1,16 @@
 <template lang="html">
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-secondary">
-      <div v-if="editing == true" class="input-group mb-3">
-        <input :value="value" @input="$emit('input', $event.target.value)" class="form-control" type="text">
-        <div class="input-group-append">
-          <button @click="$emit('save'); editing=false" class="btn btn-secondary">OK</button>
-          <button @click="editing = false" class="btn btn-secondary">X</button>
-        </div>
+  <b-row>
+    <div v-if="editing == true" class="input-group my-2">
+      <input :value="value" @input="$emit('input', $event.target.value)" class="form-control" type="text">
+      <div class="input-group-append">
+        <button @click="$emit('save'); editing=false" class="btn btn-secondary">OK</button>
+        <button @click="editing = false" class="btn btn-secondary">X</button>
       </div>
-      <div v-else @click="editing = true">
-        <slot></slot>
-      </div>
-    </li>
-  </ul>
+    </div>
+    <b-button  block variant="secondary" v-else @click="editing = true">
+      <fa :icon="['fas', 'plus']" />
+    </b-button>
+  </b-row>
 </template>
 
 <script>

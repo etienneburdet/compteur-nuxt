@@ -1,7 +1,7 @@
 <template>
-  <b-container>
+  <b-container fluid>
+    <AddToList v-model="newCountName" @save="addCount" />
     <CountsList :counts="counts"/>
-    <AddToList v-model="newCountName" @save="addCount">+</AddToList>
   </b-container>
 </template>
 
@@ -38,7 +38,7 @@ export default {
       const newCount = getNewCount(this.newCountName)
       await addDoc(newCount)
       this.counts = await fetchAllDocs()
-    } 
+    }
   }
 }
 </script>
