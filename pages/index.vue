@@ -16,7 +16,7 @@
 <script>
 import CountsList from '~/components/CountsList.vue'
 import  AddToList from '~/components/AddToList.vue'
-import { addDoc, monitorChangse, fetchAllDocs }  from '~/plugins/pouchdb.js'
+import { addDoc, monitorChangse, fetchAllCounts }  from '~/plugins/pouchdb.js'
 
 const getNewCount = (countName) => {
   const newCount = {
@@ -38,14 +38,14 @@ export default {
     }
   },
   async asyncData() {
-    const counts = await fetchAllDocs()
+    const counts = await fetchAllCounts()
     return { counts }
   },
   methods: {
     async addCount() {
       const newCount = getNewCount(this.newCountName)
       await addDoc(newCount)
-      this.counts = await fetchAllDocs()
+      this.counts = await fetchAllCounts()
     }
   }
 }
