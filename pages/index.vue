@@ -1,7 +1,15 @@
 <template>
-  <b-container fluid>
-    <AddToList v-model="newCountName" @save="addCount" />
-    <CountsList :counts="counts"/>
+  <b-container class="mx-auto p-0">
+    <b-row class="justify-content-center">
+      <b-col md="8" lg="6">
+        <AddToList v-model="newCountName" @save="addCount" />
+      </b-col>
+    </b-row>
+    <b-row class="justify-content-center">
+      <b-col md="8" lg="6">
+        <CountsList :counts="counts"/>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
