@@ -8,9 +8,10 @@
         <b-card-body>
           <nuxt-link
             v-for="point in count.points"
-            to="`counts/${count._id}/points/${point._id}`"
-          >{{ point.name }}
-        </nuxt-link>
+            :to="{ name: 'points-id', params: { id: point._id, countId: count._id } }"
+          >
+            {{ point.name }}
+          </nuxt-link>
         <AddToList @save="$emit('addPoint', newPointName, count._id)" v-model="newPointName"/>
         </b-card-body>
       </b-collapse>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="container">
-    {{ $route.params }}
+    {{ $route.params.id }}  {{ $route.params.countId }}  
   </div>
 </template>
 

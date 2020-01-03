@@ -1,5 +1,5 @@
-2020/01/02-16:20:34.302 c60 Recovering log #32
-2020/01/02-16:20:34.322 c60 Level-0 table #34: started
-2020/01/02-16:20:34.332 c60 Level-0 table #34: 26920 bytes OK
-2020/01/02-16:20:34.342 c60 Delete type=0 #32
-2020/01/02-16:20:34.342 c60 Delete type=3 #30
+2020/01/03-10:16:21.635 2df8 Recovering log #38
+2020/01/03-10:16:21.635 2df8 Level-0 table #41: started
+2020/01/03-10:16:21.645 2df8 Level-0 table #41: 347 bytes OK
+2020/01/03-10:16:21.665 2df8 Delete type=0 #38
+2020/01/03-10:16:21.665 2df8 Delete type=3 #36
