@@ -21,11 +21,15 @@ const returnRows = (res) => {
 const fetchAllCounts = () => {
     return db.allDocs({
       include_docs: true,
-      descending: true,
-      startkey: "count:",
-      endkey: "count\\uf00"
+      descending: true
     }).then(returnRows)
       .catch(console.log.bind(console));
+}
+
+const addPointToCount = async (point, countId) => {
+  const count = await db.get(countId)
+  count.points.push(point)
+  await db.put(count)
 }
 
 const addDoc = async (doc) => {
@@ -34,4 +38,4 @@ const addDoc = async (doc) => {
   return newDocs
 }
 
-export { addDoc, fetchAllCounts }
+export { addDoc, addPointToCount, fetchAllCounts }

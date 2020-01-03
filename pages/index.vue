@@ -7,7 +7,7 @@
     </b-row>
     <b-row class="justify-content-center">
       <b-col md="8" lg="6">
-        <CountsList :counts="counts"/>
+        <CountsList :counts="counts" @addPoint="addPoint" />
       </b-col>
     </b-row>
   </b-container>
@@ -16,14 +16,23 @@
 <script>
 import CountsList from '~/components/CountsList.vue'
 import  AddToList from '~/components/AddToList.vue'
-import { addDoc, monitorChangse, fetchAllCounts }  from '~/plugins/pouchdb.js'
+import { addDoc, addPointToCount, fetchAllCounts }  from '~/plugins/pouchdb.js'
 
 const getNewCount = (countName) => {
   const newCount = {
     _id: `count:${Date.now()}-${countName}`,
-    name: countName
+    name: countName,
+    points: []
   }
   return newCount
+}
+
+const getNewPoint = (pointName) => {
+  const newPoint = {
+    _id: `point:${Date.now()}-${pointName}`,
+    name: pointName
+  }
+  return newPoint
 }
 
 export default {
@@ -45,6 +54,11 @@ export default {
     async addCount() {
       const newCount = getNewCount(this.newCountName)
       await addDoc(newCount)
+      this.counts = await fetchAllCounts()
+    },
+    async addPoint(name, countId) {
+      const newPoint = getNewPoint(name)
+      await addPointToCount(newPoint, countId)
       this.counts = await fetchAllCounts()
     }
   }
