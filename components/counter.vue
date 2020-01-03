@@ -1,10 +1,19 @@
 
 
 <template lang="html">
+  <b-col md="8" lg="6">
+    <b-card class="mb-0">
+      <b-card-header>
+        {{ count.name }} - {{ point.name }}
+      </b-card-header>
+      <b-card-body class="p-0">
+
+      </b-card-body>
+    </b-card>
+  </b-col>
   <div class="col-md-8 col-lg-6">
     <div class="card mb-0">
       <div class="card-header">
-        {{ count.name }} - {{ point.name }}
       </div>
       <div class="card-body p-0">
         <div class="row no-gutters">
@@ -19,7 +28,7 @@
 
 <script>
 export default {
-  props: ['countIndex','pointIndex'],
+  props: ['point'],
   data: function () {
     return {
       count: {},

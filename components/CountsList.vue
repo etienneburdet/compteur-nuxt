@@ -3,6 +3,7 @@
     <b-card no-body v-for="count in counts" :key="count._id">
       <b-card-header header-tag="header" class="p-1" role="tab" v-b-toggle="'accordion' + count._id">
         <h5 class="card-title">{{ count.name }}</h5>
+        <h6 @click="$emit('deleteCount', count)">Supprimer</h6>
       </b-card-header>
       <b-collapse :id="'accordion' + count._id"  accordion="my-accordion" role="tabpanel">
         <b-card-body>
