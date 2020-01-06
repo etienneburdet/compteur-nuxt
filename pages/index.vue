@@ -30,6 +30,7 @@ const getNewCount = (name) => {
 const getNewPoint = (name, countId) => {
   const newPoint = {
     _id: `point:${Date.now()}-${name}`,
+    countId: countId,
     name: name,
     buttons: []
   }

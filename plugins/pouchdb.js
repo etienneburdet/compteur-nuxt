@@ -28,6 +28,11 @@ const fetchAllCounts = () => {
       .catch(er => console.log(er));
 }
 
+const getDoc = async (id) => {
+  const doc = await db.get(id)
+  return doc
+}
+
 const addPointToCount = async (point, countId) => {
   const count = await db.get(countId)
   const pointRef = {
@@ -48,4 +53,4 @@ const removeDoc = async (doc) => {
   await db.remove(doc)
 }
 
-export { addDoc, removeDoc, addPointToCount, fetchAllCounts }
+export { addDoc, getDoc, removeDoc, addPointToCount, fetchAllCounts }

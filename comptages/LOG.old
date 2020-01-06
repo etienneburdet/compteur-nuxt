@@ -1,5 +1,5 @@
-2020/01/03-10:16:21.635 2df8 Recovering log #38
-2020/01/03-10:16:21.635 2df8 Level-0 table #41: started
-2020/01/03-10:16:21.645 2df8 Level-0 table #41: 347 bytes OK
-2020/01/03-10:16:21.665 2df8 Delete type=0 #38
-2020/01/03-10:16:21.665 2df8 Delete type=3 #36
+2020/01/03-11:18:58.785 28bc Recovering log #42
+2020/01/03-11:18:58.785 28bc Level-0 table #44: started
+2020/01/03-11:18:58.795 28bc Level-0 table #44: 283 bytes OK
+2020/01/03-11:18:58.825 28bc Delete type=0 #42
+2020/01/03-11:18:58.825 28bc Delete type=3 #40

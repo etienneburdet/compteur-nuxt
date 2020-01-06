@@ -1,10 +1,14 @@
 <template lang="html">
   <div class="container">
-    {{ $route.params.id }}  {{ $route.params.countId }}
+    <br>
+    {{ point.name }}
+    {{ point.countId }}
   </div>
 </template>
 
 <script>
+import { getDoc }  from '~/plugins/pouchdb.js'
+
 export default {
   data() {
     return {
@@ -12,9 +16,11 @@ export default {
       count: {}
     }
   },
-  async asyncData() {
-    const count = await getCount(this.$route.params.countId)
-    const point = count.points
+  async asyncData({ params }) {
+    // const point = await getDoc(params.id)
+    console.log('id', params.countId)
+    const point = await getDoc(params.id)
+    return { point }
   }
 }
 </script>
