@@ -4,14 +4,14 @@
   <b-col md="8" lg="6">
     <b-card class="mb-0">
       <b-card-header>
-        {{ count.name }} - {{ point.name }}
+      {{ point.name }}
       </b-card-header>
       <b-card-body class="p-0">
 
       </b-card-body>
     </b-card>
   </b-col>
-  <div class="col-md-8 col-lg-6">
+  <!-- <div class="col-md-8 col-lg-6">
     <div class="card mb-0">
       <div class="card-header">
       </div>
@@ -23,7 +23,7 @@
       <button class="btn btn-primary d-md-none" @click="endCount">Terminer</button>
     </div>
     <a class="btn btn-block btn-secondary d-none d-lg-block" :href="downloadPoint" download="point.csv"><i class="fas fa-file-download fa-2x"></i></a>
-  </div>
+  </div> -->
 </template>
 
 <script>

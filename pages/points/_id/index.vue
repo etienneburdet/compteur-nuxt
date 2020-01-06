@@ -7,21 +7,23 @@
 </template>
 
 <script>
+import Counter     from '~/components/Counter.vue'
 import { getDoc }  from '~/plugins/pouchdb.js'
 
 export default {
   data() {
     return {
-      point: {},
-      count: {}
+      point: {}
     }
   },
-  async asyncData({ params }) {
-    // const point = await getDoc(params.id)
-    console.log('id', params.countId)
-    const point = await getDoc(params.id)
-    return { point }
-  }
+  async created() {
+      try {
+        this.point = await getDoc(this.$route.params.id)
+      }
+      catch(err) {
+        console.error('err from page', err);
+      }
+  },
 }
 </script>
 

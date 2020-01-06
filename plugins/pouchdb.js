@@ -29,8 +29,14 @@ const fetchAllCounts = () => {
 }
 
 const getDoc = async (id) => {
-  const doc = await db.get(id)
-  return doc
+  console.log('Hi from plugin');
+  try {
+    const doc = await db.get(id)
+    console.log('retrieved doc: ', doc);
+    return doc
+  } catch(err) {
+    console.log('plugin error', err);
+  }
 }
 
 const addPointToCount = async (point, countId) => {

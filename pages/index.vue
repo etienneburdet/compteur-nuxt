@@ -10,6 +10,9 @@
         <CountsList :counts="counts" @addPoint="addPoint" @deleteCount="deleteCount" />
       </b-col>
     </b-row>
+    <b-button  variant="primary" @click="refreshDocs">
+        refresh
+    </b-button>
   </b-container>
 </template>
 
@@ -48,9 +51,8 @@ export default {
       counts: []
     }
   },
-  async asyncData() {
-    const counts = await fetchAllCounts()
-    return { counts }
+  async created() {
+    this.counts = await fetchAllCounts()
   },
   methods: {
     async addCount() {
@@ -66,6 +68,9 @@ export default {
       const newPoint = getNewPoint(name, countId)
       await addDoc(newPoint)
       await addPointToCount(newPoint, countId)
+      this.counts = await fetchAllCounts()
+    },
+    async refreshDocs() {
       this.counts = await fetchAllCounts()
     }
   }
