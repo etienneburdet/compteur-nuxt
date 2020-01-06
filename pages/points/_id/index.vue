@@ -1,16 +1,18 @@
 <template lang="html">
   <div class="container">
     <br>
-    {{ point.name }}
-    {{ point.countId }}
+    <Counter :point="point"/>
   </div>
 </template>
 
 <script>
-import Counter     from '~/components/Counter.vue'
+import Counter from '~/components/Counter.vue'
 import { getDoc }  from '~/plugins/pouchdb.js'
 
 export default {
+  components: {
+    Counter
+  },
   data() {
     return {
       point: {}

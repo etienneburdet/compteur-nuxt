@@ -1,5 +1,3 @@
-
-
 <template lang="html">
   <b-col md="8" lg="6">
     <b-card class="mb-0">
@@ -7,6 +5,10 @@
       {{ point.name }}
       </b-card-header>
       <b-card-body class="p-0">
+        <ButtonCounter
+          v-for="button in point.buttons" keys="button.id"
+
+        />
 
       </b-card-body>
     </b-card>
@@ -27,56 +29,55 @@
 </template>
 
 <script>
+import ButtonCounter from '~/components/ButtonCounter.vue'
+
 export default {
   props: ['point'],
-  data: function () {
-    return {
-      count: {},
-      point: {}
-    }
-  },
-  computed: {
-    downloadPoint: function() {
-      const btnsArr = this.point.buttons;
-      let dData = 'data:text/csv;sep=;charset=utf-8,%EF%BB%B \r\n';
-      btnsArr.forEach(el=> {
-        const csvRow = el.name + ';' + el.clicks.join(';') + '\r\n';
-        dData += csvRow;
-      });
-
-      const blob = new Blob([dData], {type: 'text/csv'});
-      const url = window.URL.createObjectURL(blob);
-
-      return url
-    }
-  },
-  methods: {
-    registerClick: function(index) {
-      const clickTime = new Date();
-      const stringClickTime = clickTime.getDay().toString() + '-'
-      + clickTime.getMonth().toString() + '-'
-      + clickTime.getMonth().toString() + ' '
-      + clickTime.getHours().toString() + ':'
-      + clickTime.getMinutes().toString() + ':'
-      + clickTime.getSeconds().toString();
-
-
-      this.point.buttons[index].clicks.push(stringClickTime);
-    },
-    endCount: function() {
-      db.put(this.count)
-      .then(() => {
-        router.push('/');
-      }).catch(err => console.log(err) );
-    }
-  },
-  created: async function() {
-    store.counts = await store.fetchAllDocs();
-    this.count = store.counts[this.countIndex],
-    this.point = store.counts[this.countIndex].points[this.pointIndex]
-  },
-}
-</script>
+  components: {
+    ButtonCounter
+  }
+//   computed: {
+//     downloadPoint: function() {
+//       const btnsArr = this.point.buttons;
+//       let dData = 'data:text/csv;sep=;charset=utf-8,%EF%BB%B \r\n';
+//       btnsArr.forEach(el=> {
+//         const csvRow = el.name + ';' + el.clicks.join(';') + '\r\n';
+//         dData += csvRow;
+//       });
+//
+//       const blob = new Blob([dData], {type: 'text/csv'});
+//       const url = window.URL.createObjectURL(blob);
+//
+//       return url
+//     }
+//   },
+//   methods: {
+//     registerClick: function(index) {
+//       const clickTime = new Date();
+//       const stringClickTime = clickTime.getDay().toString() + '-'
+//       + clickTime.getMonth().toString() + '-'
+//       + clickTime.getMonth().toString() + ' '
+//       + clickTime.getHours().toString() + ':'
+//       + clickTime.getMinutes().toString() + ':'
+//       + clickTime.getSeconds().toString();
+//
+//
+//       this.point.buttons[index].clicks.push(stringClickTime);
+//     },
+//     endCount: function() {
+//       db.put(this.count)
+//       .then(() => {
+//         router.push('/');
+//       }).catch(err => console.log(err) );
+//     }
+//   },
+//   created: async function() {
+//     store.counts = await store.fetchAllDocs();
+//     this.count = store.counts[this.countIndex],
+//     this.point = store.counts[this.countIndex].points[this.pointIndex]
+//   },
+ }
+// </script>
 
 <style lang="css" scoped>
 </style>
