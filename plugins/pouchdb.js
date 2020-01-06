@@ -29,13 +29,11 @@ const fetchAllCounts = () => {
 }
 
 const getDoc = async (id) => {
-  console.log('Hi from plugin');
   try {
     const doc = await db.get(id)
-    console.log('retrieved doc: ', doc);
     return doc
   } catch(err) {
-    console.log('plugin error', err);
+    console.error(err);
   }
 }
 
