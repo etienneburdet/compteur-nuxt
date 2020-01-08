@@ -8,14 +8,15 @@
         <ButtonCounter
           v-for="button in point.buttons"
           :key="button.id"
+          :button="button"
           @button-click="registerClick"
         />
 
       </b-card-body>
-      <b-button  variant="primary" @click="endCount" class="d-md-none">
+      <b-button  variant="primary" @click="" class="d-md-none">
           Terminer
       </b-button>
-      <b-button  variant="secondary" @click="endCount" class="d-none d-md-block">
+      <b-button  variant="secondary" @click="" class="d-none d-md-block">
           Télécharger CSV
       </b-button>
     </b-card>

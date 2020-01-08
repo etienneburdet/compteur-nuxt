@@ -29,12 +29,12 @@ export default {
         this.point = await getDoc(this.$route.params.id)
       }
       catch(err) {
-        console.error('err from page', err);
+        console.error(err);
       }
   },
   methods: {
     async saveButton() {
-      await addButtonToPoint(this.newButtonName)
+      await addButtonToPoint(this.point._id, this.newButtonName)
     }
   }
 }

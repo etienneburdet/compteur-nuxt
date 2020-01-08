@@ -92,9 +92,10 @@ const addPointToCount = async (pointName, countId) => {
 }
 
 const addButtonToPoint = async (pointId, buttonName) => {
-  const newButton = getNewButton(buttonName)
+  const button = getNewButton(buttonName)
   const point = await db.get(pointId)
-  points.buttons.push(button)
+  point.buttons.push(button)
+  console.log(point.buttons);
   try {
     await db.put(point)
   }
