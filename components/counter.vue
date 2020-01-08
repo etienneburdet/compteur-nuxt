@@ -12,7 +12,7 @@
           @clicked="$emit('registerClick', index)"
         />
       </b-card-body>
-      <b-button  variant="primary" @click="" class="d-md-none">
+      <b-button  variant="primary" @click="$emit('endCount')" class="d-md-none">
           Terminer
       </b-button>
       <b-button  variant="secondary" @click="" class="d-none d-md-block">
@@ -43,34 +43,21 @@ export default {
   components: {
     ButtonCounter
   },
-//   computed: {
-//     downloadPoint: function() {
-//       const btnsArr = this.point.buttons;
-//       let dData = 'data:text/csv;sep=;charset=utf-8,%EF%BB%B \r\n';
-//       btnsArr.forEach(el=> {
-//         const csvRow = el.name + ';' + el.clicks.join(';') + '\r\n';
-//         dData += csvRow;
-//       });
-//
-//       const blob = new Blob([dData], {type: 'text/csv'});
-//       const url = window.URL.createObjectURL(blob);
-//
-//       return url
-//     }
-//   },
-  methods: {
-    endCount: function() {
-      db.put(this.count)
-      .then(() => {
-        router.push('/');
-      }).catch(err => console.log(err) );
+  computed: {
+    downloadPoint: function() {
+      const btnsArr = this.point.buttons;
+      let dData = 'data:text/csv;sep=;charset=utf-8,%EF%BB%B \r\n';
+      btnsArr.forEach(el=> {
+        const csvRow = el.name + ';' + el.clicks.join(';') + '\r\n';
+        dData += csvRow;
+      });
+
+      const blob = new Blob([dData], {type: 'text/csv'});
+      const url = window.URL.createObjectURL(blob);
+
+      return url
     }
   }
-//   created: async function() {
-//     store.counts = await store.fetchAllDocs();
-//     this.count = store.counts[this.countIndex],
-//     this.point = store.counts[this.countIndex].points[this.pointIndex]
-//   },
  }
 // </script>
 

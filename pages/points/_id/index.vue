@@ -4,6 +4,7 @@
     <Counter
       :point="point"
       @registerClick="registerClick"
+      @endCount="endCount"
     />
     <input v-model="newButtonName" class="form-control" type="text">
     <div class="input-group-append">
@@ -15,7 +16,7 @@
 
 <script>
 import Counter from '~/components/Counter.vue'
-import { getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
+import { addDoc, getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
@@ -50,6 +51,9 @@ export default {
 
       this.point.buttons[buttonIndex].clicks.push(stringClickTime)
     },
+    async endCount() {
+      addDoc(this.point)
+    }
   }
 }
 </script>
