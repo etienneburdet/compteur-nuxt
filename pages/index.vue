@@ -19,26 +19,7 @@
 <script>
 import CountsList from '~/components/CountsList.vue'
 import  AddToList from '~/components/AddToList.vue'
-import { addDoc, removeDoc, addPointToCount, fetchAllCounts }  from '~/plugins/pouchdb.js'
-
-const getNewCount = (name) => {
-  const newCount = {
-    _id: `count:${Date.now()}-${name}`,
-    name: name,
-    points: []
-  }
-  return newCount
-}
-
-const getNewPoint = (name, countId) => {
-  const newPoint = {
-    _id: `point:${Date.now()}-${name}`,
-    countId: countId,
-    name: name,
-    buttons: []
-  }
-  return newPoint
-}
+import { putCount, removeDoc, addPointToCount, fetchAllCounts }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
@@ -56,18 +37,15 @@ export default {
   },
   methods: {
     async addCount() {
-      const newCount = getNewCount(this.newCountName)
-      await addDoc(newCount)
+      await putCount(this.newCountName)
       this.counts = await fetchAllCounts()
     },
     async deleteCount(count) {
       await removeDoc(count)
       this.counts = await fetchAllCounts()
     },
-    async addPoint(name, countId) {
-      const newPoint = getNewPoint(name, countId)
-      await addDoc(newPoint)
-      await addPointToCount(newPoint, countId)
+    async addPoint(pointName, countId) {
+      await addPointToCount(pointName, countId)
       this.counts = await fetchAllCounts()
     },
     async refreshDocs() {

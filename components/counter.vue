@@ -6,11 +6,18 @@
       </b-card-header>
       <b-card-body class="p-0">
         <ButtonCounter
-          v-for="button in point.buttons" keys="button.id"
-
+          v-for="button in point.buttons"
+          :key="button.id"
+          @button-click="registerClick"
         />
 
       </b-card-body>
+      <b-button  variant="primary" @click="endCount" class="d-md-none">
+          Terminer
+      </b-button>
+      <b-button  variant="secondary" @click="endCount" class="d-none d-md-block">
+          Télécharger CSV
+      </b-button>
     </b-card>
   </b-col>
   <!-- <div class="col-md-8 col-lg-6">

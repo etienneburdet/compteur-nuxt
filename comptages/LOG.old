@@ -1,5 +1,5 @@
-2020/01/03-11:18:58.785 28bc Recovering log #42
-2020/01/03-11:18:58.785 28bc Level-0 table #44: started
-2020/01/03-11:18:58.795 28bc Level-0 table #44: 283 bytes OK
-2020/01/03-11:18:58.825 28bc Delete type=0 #42
-2020/01/03-11:18:58.825 28bc Delete type=3 #40
+2020/01/07-10:54:02.806 dc8 Recovering log #48
+2020/01/07-10:54:02.806 dc8 Level-0 table #51: started
+2020/01/07-10:54:02.826 dc8 Level-0 table #51: 1006 bytes OK
+2020/01/07-10:54:02.856 dc8 Delete type=0 #48
+2020/01/07-10:54:02.857 dc8 Delete type=3 #46

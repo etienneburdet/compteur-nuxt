@@ -2,12 +2,17 @@
   <div class="container">
     <br>
     <Counter :point="point"/>
+    <input v-model="newButtonName" class="form-control" type="text">
+    <div class="input-group-append">
+      <button @click="saveButton" class="btn btn-secondary">OK</button>
+      <button class="btn btn-secondary">X</button>
+    </div>
   </div>
 </template>
 
 <script>
 import Counter from '~/components/Counter.vue'
-import { getDoc }  from '~/plugins/pouchdb.js'
+import { getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
@@ -15,7 +20,8 @@ export default {
   },
   data() {
     return {
-      point: {}
+      point: {},
+      newButtonName: "Nouveau Bouton"
     }
   },
   async created() {
@@ -26,6 +32,11 @@ export default {
         console.error('err from page', err);
       }
   },
+  methods: {
+    async saveButton() {
+      await addButtonToPoint(this.newButtonName)
+    }
+  }
 }
 </script>
 

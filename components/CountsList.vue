@@ -9,7 +9,8 @@
         <b-card-body>
           <nuxt-link
             v-for="point in count.points"
-            :to="{ name: 'points-id', params: { id: point._id, countId: count._id } }"
+            :key="point._id"
+            :to="{ name: 'points-id', params: { id: point._id} }"
           >
             {{ point.name }}
           </nuxt-link>
