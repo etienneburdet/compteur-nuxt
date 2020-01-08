@@ -6,12 +6,11 @@
       </b-card-header>
       <b-card-body class="p-0">
         <ButtonCounter
-          v-for="button in point.buttons"
-          :key="button.id"
+          v-for="(button,index) in point.buttons"
+          :key="button._id"
           :button="button"
-          @button-click="registerClick"
+          @clicked="$emit('registerClick', index)"
         />
-
       </b-card-body>
       <b-button  variant="primary" @click="" class="d-md-none">
           Terminer
@@ -43,7 +42,7 @@ export default {
   props: ['point'],
   components: {
     ButtonCounter
-  }
+  },
 //   computed: {
 //     downloadPoint: function() {
 //       const btnsArr = this.point.buttons;
@@ -59,26 +58,14 @@ export default {
 //       return url
 //     }
 //   },
-//   methods: {
-//     registerClick: function(index) {
-//       const clickTime = new Date();
-//       const stringClickTime = clickTime.getDay().toString() + '-'
-//       + clickTime.getMonth().toString() + '-'
-//       + clickTime.getMonth().toString() + ' '
-//       + clickTime.getHours().toString() + ':'
-//       + clickTime.getMinutes().toString() + ':'
-//       + clickTime.getSeconds().toString();
-//
-//
-//       this.point.buttons[index].clicks.push(stringClickTime);
-//     },
-//     endCount: function() {
-//       db.put(this.count)
-//       .then(() => {
-//         router.push('/');
-//       }).catch(err => console.log(err) );
-//     }
-//   },
+  methods: {
+    endCount: function() {
+      db.put(this.count)
+      .then(() => {
+        router.push('/');
+      }).catch(err => console.log(err) );
+    }
+  }
 //   created: async function() {
 //     store.counts = await store.fetchAllDocs();
 //     this.count = store.counts[this.countIndex],

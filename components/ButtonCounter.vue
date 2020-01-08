@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="col">
-    <button  class="btn btn-outline-dark btn-block rounded-0 d-md-none" @click="$emit('button-click')">
+    <button  class="btn btn-outline-dark btn-block rounded-0 d-md-none" @click="$emit('clicked')">
       <p> {{ button.name }} </p>
       <h1 class="display-5">{{ counter }}</h1>
     </button>

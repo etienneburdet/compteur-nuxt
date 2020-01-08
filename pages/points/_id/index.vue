@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="container">
     <br>
-    <Counter :point="point"/>
+    <Counter
+      :point="point"
+      @registerClick="registerClick"
+    />
     <input v-model="newButtonName" class="form-control" type="text">
     <div class="input-group-append">
       <button @click="saveButton" class="btn btn-secondary">OK</button>
@@ -35,7 +38,18 @@ export default {
   methods: {
     async saveButton() {
       await addButtonToPoint(this.point._id, this.newButtonName)
-    }
+    },
+    async registerClick(buttonIndex) {
+      const clickTime = new Date()
+      const stringClickTime = clickTime.getDay().toString() + '-'
+      + clickTime.getMonth().toString() + '-'
+      + clickTime.getMonth().toString() + ' '
+      + clickTime.getHours().toString() + ':'
+      + clickTime.getMinutes().toString() + ':'
+      + clickTime.getSeconds().toString()
+
+      this.point.buttons[buttonIndex].clicks.push(stringClickTime)
+    },
   }
 }
 </script>
