@@ -1,6 +1,5 @@
 <template lang="html">
-  <div class="container">
-    <br>
+  <b-container>
     <Counter
       :point="point"
       @registerClick="registerClick"
@@ -11,7 +10,7 @@
       <button @click="saveButton" class="btn btn-secondary">OK</button>
       <button class="btn btn-secondary">X</button>
     </div>
-  </div>
+  </b-container>
 </template>
 
 <script>

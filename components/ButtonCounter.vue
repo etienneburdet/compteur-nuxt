@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="col">
+  <b-col cols="6">
     <button  class="btn btn-outline-dark btn-block rounded-0 d-md-none" @click="$emit('clicked')">
       <p> {{ button.name }} </p>
       <h1 class="display-5">{{ counter }}</h1>
@@ -8,7 +8,7 @@
       <p class="card-title">{{ button.name }}</p>
       <h5 class="card-title"> {{ counter }} </h5>
     </div>
-  </div>
+  </b-col>
 </template>
 
 <script>
