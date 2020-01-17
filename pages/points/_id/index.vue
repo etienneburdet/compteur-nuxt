@@ -15,7 +15,7 @@
 
 <script>
 import Counter from '~/components/Counter.vue'
-import { addDoc, getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
+import { saveDoc, getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
@@ -51,7 +51,7 @@ export default {
       this.point.buttons[buttonIndex].clicks.push(stringClickTime)
     },
     async endCount() {
-      addDoc(this.point)
+      saveDoc(this.point)
     }
   }
 }

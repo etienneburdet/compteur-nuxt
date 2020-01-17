@@ -65,10 +65,6 @@ const getDoc = async (id) => {
   }
 }
 
-const addDoc = async (doc) => {
-  await db.put(doc)
-}
-
 const putCount = async (countName) => {
   const count = getNewCount(countName)
   try {
@@ -79,16 +75,22 @@ const putCount = async (countName) => {
   }
 }
 
-const addPointToCount = async (pointName, countId) => {
-  const point = getNewPoint(pointName, countId)
+const addPointToCount = async (countId) => {
+  const point = getNewPoint(countId)
   const count = await db.get(countId)
   const pointRef = {
     _id: point._id,
     name: point.name
   }
   count.points.push(pointRef)
-  await db.put(count)
-  await addDoc(point)
+  try {
+    await db.put(count)
+    await db.put(point)
+    return point._id
+  }
+  catch(err) {
+    console.error(err)
+  }
 }
 
 const addButtonToPoint = async (pointId, buttonName) => {
@@ -104,9 +106,11 @@ const addButtonToPoint = async (pointId, buttonName) => {
   }
 }
 
-
+const saveDoc = async (doc) => {
+  await db.put(doc)
+}
 const removeDoc = async (doc) => {
   await db.remove(doc)
 }
 
-export { addDoc, getDoc, removeDoc, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }
+export { saveDoc, getDoc, removeDoc, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }

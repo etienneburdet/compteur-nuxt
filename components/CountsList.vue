@@ -23,10 +23,12 @@
               >
                 {{ point.name }}
               </NuxtLink>
-              <fa icon="edit" />
+              <NuxtLink :to="{ name: 'points-id-edit', params: { id: point._id }}">
+                <fa icon="edit" />
+              </NuxtLink>
             </b-list-group-item>
+            <AddPoint :countId="count._id"></AddPoint>
           </b-list-group>
-        <AddToList @save="$emit('addPoint', newPointName, count._id)" v-model="newPointName"/>
         </b-card-body>
       </b-collapse>
     </b-card>
@@ -34,17 +36,15 @@
 </template>
 
 <script>
-import  AddToList from '~/components/AddToList.vue'
+import AddToList from '~/components/AddToList.vue'
+import AddPoint from '~/components/AddPoint.vue'
+
 
 export default {
   props:  ['counts'],
   components: {
-    AddToList
-  },
-  data() {
-    return {
-      newPointName: 'Nouveau Point'
-    }
+    AddToList,
+    AddPoint
   }
 }
 </script>
