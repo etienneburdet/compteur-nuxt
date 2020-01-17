@@ -1,4 +1,4 @@
-<template lang="html">
+ii<template lang="html">
   <b-row>
     <b-col cols="12">
       {{ point.name }}

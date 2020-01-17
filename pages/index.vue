@@ -10,9 +10,6 @@
         <CountsList :counts="counts" @addPoint="addPoint" @deleteCount="deleteCount" />
       </b-col>
     </b-row>
-    <b-button  variant="primary" @click="refreshDocs">
-        refresh
-    </b-button>
   </b-container>
 </template>
 
