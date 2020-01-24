@@ -1,24 +1,41 @@
 <template lang="html">
-  <b-container class="h-100">
+  <b-container>
     <b-row cols="12" class="bg-secondary py-2 d-flex justify-content-center">
       <p class="text-light">{{ point.name }}</p>
     </b-row>
-    <Counter
+    <b-row class="flex-grow-1 align-items-end">
+      <ButtonCounter
+        v-for="(button, index) in point.buttons"
+        :key="button._id"
+        :button="button"
+        @clicked="registerClick(index)"
+      />
+    </b-row>
+    <b-row>
+      <b-button
+        variant="primary"
+        class="d-md-none d-md-block btn-block py-3"
+        @click="endCount" >
+        Terminer
+      </b-button>
+      <DownloadCSV
       :point="point"
-      @registerClick="registerClick"
-      @endCount="endCount"
-      class="fixed-bottom"
-    />
+      class="d-none d-md-block"
+      />
+    </b-row>
   </b-container>
 </template>
 
 <script>
-import Counter from '~/components/Counter.vue'
+import ButtonCounter from '~/components/ButtonCounter.vue'
+import DownloadCSV from '~/components/DownloadCSV.vue'
+
 import { saveDoc, getDoc, addButtonToPoint }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
-    Counter
+    ButtonCounter,
+    DownloadCSV
   },
   data() {
     return {
@@ -53,4 +70,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 </style>

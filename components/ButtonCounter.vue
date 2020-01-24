@@ -1,6 +1,6 @@
 <template lang="html">
-  <b-col cols="6" class="align-self-end">
-    <button  class="btn btn-outline-dark btn-block rounded-0 d-md-none" @click="$emit('clicked')">
+  <b-col cols="6" class="p-0 my-2">
+    <button  class="btn btn-outline-dark btn-block d-md-none" @click="$emit('clicked')">
       <p> {{ button.name }} </p>
       <h1 class="display-5">{{ counter }}</h1>
     </button>
