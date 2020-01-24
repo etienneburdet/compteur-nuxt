@@ -1,15 +1,15 @@
-ii<template lang="html">
-  <b-row>
-    <b-col cols="12">
-      {{ point.name }}
-    </b-col>
+eii<template lang="html">
+  <b-row class="align-items-end align-items-baseline flex-grow">
     <ButtonCounter
       v-for="(button, index) in point.buttons"
       :key="button._id"
       :button="button"
       @clicked="$emit('registerClick', index)"
     />
-    <b-button  variant="primary" @click="$emit('endCount')" class="d-md-none btn-block">
+    <b-button
+      variant="primary"
+      class="d-md-none btn-block py-3"
+      @click="$emit('endCount')" >
       Terminer
     </b-button>
     <b-button

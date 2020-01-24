@@ -1,15 +1,14 @@
 <template lang="html">
-  <b-container>
+  <b-container class="h-100">
+    <b-row cols="12" class="bg-secondary py-2 d-flex justify-content-center">
+      <p class="text-light">{{ point.name }}</p>
+    </b-row>
     <Counter
       :point="point"
       @registerClick="registerClick"
       @endCount="endCount"
+      class="fixed-bottom"
     />
-    <input v-model="newButtonName" class="form-control" type="text">
-    <div class="input-group-append">
-      <button @click="saveButton" class="btn btn-secondary">OK</button>
-      <button class="btn btn-secondary">X</button>
-    </div>
   </b-container>
 </template>
 
@@ -23,8 +22,7 @@ export default {
   },
   data() {
     return {
-      point: {},
-      newButtonName: "Nouveau Bouton"
+      point: {}
     }
   },
   async created() {
@@ -36,9 +34,6 @@ export default {
       }
   },
   methods: {
-    async saveButton() {
-      await addButtonToPoint(this.point._id, this.newButtonName)
-    },
     async registerClick(buttonIndex) {
       const clickTime = new Date()
       const stringClickTime = clickTime.getDay().toString() + '-'

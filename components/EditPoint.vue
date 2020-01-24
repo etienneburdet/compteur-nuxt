@@ -1,28 +1,38 @@
 <template lang="html">
-  <div class="col-md-8 col-lg-6">
-    <div class="card mb-0">
-      <div class="card-header">
-        {{count.name}} -
-        <input type="text" class="form-control" v-model="point.name">
-      </div>
-      <div class="card-body p-0">
-        <div class="row no-gutters">
-          <editable-card v-for="(button, index) in point.buttons" :key="button.id" v-model="button.name" @delete="deleteButton(index)"></editable-card>
-        </div>
-        <button class="btn btn-secondary" @click="addButton">+</button>
-      </div>
-      <button class="btn btn-primary" @click="save">Sauvegarder</button>
-    </div>
-  </div>
+  <b-row>
+    <b-col cols="12">
+      {{ point.name }}
+    </b-col>
+    <ButtonCounter
+      v-for="(button, index) in point.buttons"
+      :key="button._id"
+      :button="button"
+    />
+    <b-button  variant="primary" class="btn-block">
+      Ajouter un bouton
+    </b-button>
+    <b-button
+      variant="secondary"
+      :href="downloadUrl"
+      download=" point.csv"
+      class="d-none d-md-block"
+      >
+      Sauvegarder
+    </b-button>
+  </b-row>
 </template>
 
 <script>
+
+
 export default {
-  props: ['countIndex','pointIndex'],
+  props: [],
   data: function() {
     return {
       count: {},
-      point: {}
+      point: {
+        name: "Nouveau.point"
+      }
     }
   },
   methods: {
