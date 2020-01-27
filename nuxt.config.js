@@ -1,12 +1,13 @@
 require('dotenv').config()
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
+  generate: { dir: 'dist' },
   env: {
-    cloudantURL: process.env.CLOUDANT_URL
+    cloudantURL: process.env.cloudant_url
   },
   head: {
     title: process.env.npm_package_name || '',

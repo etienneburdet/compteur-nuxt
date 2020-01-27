@@ -6,11 +6,10 @@
 </template>
 
 <script>
-import EditPoint from '~/components/EditPoint.Vue'
 
 export default {
   components: {
-    EditPoint
+
   }
 }
 </script>

@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "cloudant_url": "@cloudant_url"
+    }
+  }
+}
