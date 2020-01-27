@@ -24,9 +24,8 @@
 
 <script>
 
-
 export default {
-  props: [],
+  props: ["point"],
   data: function() {
     return {
       count: {},

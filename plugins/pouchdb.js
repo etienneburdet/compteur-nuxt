@@ -125,4 +125,4 @@ const removeDoc = async (doc) => {
   await db.remove(doc)
 }
 
-export { saveDoc, getDoc, removeDoc, removePoint, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }
+export { saveDoc, getDoc, removeDoc, removePoint, getNewPoint, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }
