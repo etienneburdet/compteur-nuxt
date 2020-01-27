@@ -14,19 +14,10 @@
       <b-collapse :id="'accordion' + count._id"  accordion="my-accordion" role="tabpanel">
         <b-card-body class="p-0">
           <b-list-group>
-            <b-list-group-item
-              v-for="point in count.points"
-              class="d-flex justify-content-between">
-              <NuxtLink
-              :key="point._id"
-              :to="{ name: 'points-id', params: { id: point._id} }"
-              >
-                {{ point.name }}
-              </NuxtLink>
-              <NuxtLink :to="{ name: 'points-id-edit', params: { id: point._id }}">
-                <fa icon="edit" />
-              </NuxtLink>
-            </b-list-group-item>
+            <PointInlist
+              v-for="point in count.points" :key="point._id"
+              :point="point"
+            />
             <AddPoint :countId="count._id"></AddPoint>
           </b-list-group>
         </b-card-body>
@@ -38,13 +29,15 @@
 <script>
 import AddToList from '~/components/AddToList.vue'
 import AddPoint from '~/components/AddPoint.vue'
+import PointInList from '~/components/PointInList.vue'
 
 
 export default {
   props:  ['counts'],
   components: {
     AddToList,
-    AddPoint
+    AddPoint,
+    PointInList
   }
 }
 </script>
