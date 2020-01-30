@@ -8,14 +8,18 @@
       :key="button._id"
       :button="button"
     />
-    <b-button  variant="primary" class="btn-block">
-      Ajouter un bouton
-    </b-button>
+    <b-input-group class="mt-3">
+      <b-form-input v-model="newButtonName"></b-form-input>
+      <b-input-group-append>
+        <b-button
+          variant="secondary"
+          @click="addButton"
+        >Ajouter un bouton</b-button>
+      </b-input-group-append>
+    </b-input-group>
     <b-button
-      variant="secondary"
-      :href="downloadUrl"
-      download=" point.csv"
-      class="d-none d-md-block"
+      variant="primary"
+      @click="$emit('save-point')"
       >
       Sauvegarder
     </b-button>
@@ -23,31 +27,24 @@
 </template>
 
 <script>
+import ButtonCounter from '~/components/ButtonCounter.vue'
 
 export default {
+  components: {
+    ButtonCounter
+  },
   props: ["point"],
-  data: function() {
+  data() {
     return {
-      count: {},
-      point: {
-        name: "Nouveau.point"
-      }
+      newButtonName: "Nouveau Bouton"
     }
   },
   methods: {
-    addButton: function() {
-      this.point.buttons.push(emptyButton());
-    },
-    deleteButton: function(index) {
-      this.point.buttons.splice(index,1);
-    },
-    save: function() {
-      db.put(this.count)
-        .then(() => {
-          router.push('/');
-        }).catch(err => console.log(err) );
+    addButton() {
+      this.$emit('add-button', this.newButtonName)
+      this.newButtonName = "Nouveau Bouton"
     }
-  },
+  }
 }
 </script>
 

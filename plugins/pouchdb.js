@@ -75,8 +75,7 @@ const putCount = async (countName) => {
   }
 }
 
-const addPointToCount = async (countId) => {
-  const point = getNewPoint(countId)
+const addPointToCount = async (countId, point) => {
   const count = await db.get(countId)
   const pointRef = {
     _id: point._id,
@@ -93,17 +92,9 @@ const addPointToCount = async (countId) => {
   }
 }
 
-const addButtonToPoint = async (pointId, buttonName) => {
+const addButtonToPoint = (point, buttonName) => {
   const button = getNewButton(buttonName)
-  const point = await db.get(pointId)
   point.buttons.push(button)
-  console.log(point.buttons);
-  try {
-    await db.put(point)
-  }
-  catch(err) {
-    console.error(err)
-  }
 }
 
 const removePoint = async (point) => {

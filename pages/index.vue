@@ -7,7 +7,10 @@
     </b-row>
     <b-row class="justify-content-center">
       <b-col md="8" lg="6">
-        <CountsList :counts="counts" @addPoint="addPoint" @deleteCount="deleteCount" />
+        <CountsList
+        :counts="counts"
+        @add-point="addPoint"
+        @delete-count="deleteCount" />
       </b-col>
     </b-row>
   </b-container>

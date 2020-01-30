@@ -7,14 +7,14 @@
         role="tab"
         v-b-toggle="'accordion' + count._id">
         <h5 class="card-title">{{ count.name }}</h5>
-        <h6 @click="$emit('deleteCount', count)">
+        <h6 @click="$emit('delete-count', count)">
           <fa icon="trash-alt"/>
         </h6>
       </b-card-header>
       <b-collapse :id="'accordion' + count._id"  accordion="my-accordion" role="tabpanel">
         <b-card-body class="p-0">
           <b-list-group>
-            <PointInlist
+            <PointInList
               v-for="point in count.points" :key="point._id"
               :point="point"
             />
