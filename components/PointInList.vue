@@ -2,30 +2,24 @@
   <b-list-group-item
     class="d-flex justify-content-between">
     <NuxtLink
-    :key="point._id"
     :to="{ name: 'points-id', params: { id: point._id} }"
     >
       {{ point.name }}
     </NuxtLink>
-    <NuxtLink :to="{ name: 'points-id-edit', params: { id: point._id }}">
-      <fa icon="edit" />
-      <h6 @click="deletPoint">
+    <div>
+      <NuxtLink :to="{ name: 'points-id-edit', params: { id: point._id }}">
+        <fa icon="edit" />
+      </NuxtLink>
+      <a href="#" @click="$emit('delete-point')">
         <fa icon="trash-alt"/>
-      </h6>
-    </NuxtLink>
+      </a>
+    </div>
   </b-list-group-item>
 </template>
 
 <script>
-import { removePoint } from '~/plugins/pouchdb.js'
-
 export default {
-  props: ['point'],
-  methods: {
-    async deletePoint() {
-      removePoint(this.point)
-    }
-  }
+  props: ['point']
 }
 </script>
 

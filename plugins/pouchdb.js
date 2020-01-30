@@ -97,11 +97,11 @@ const addButtonToPoint = (point, buttonName) => {
   point.buttons.push(button)
 }
 
-const removePoint = async (point) => {
-  const count = await db.get(point.countId)
+const removePoint = async (count, pointId) => {
+  const point = await db.get(pointId)
   const refIndex = count.points.indexOf({
     _id: point._id,
-    nam: ponit.name
+    name: point.name
   })
   if (index !== -1) count.points.splice(refIndex, 1)
   db.put(count)
