@@ -10,6 +10,7 @@
         <CountsList
         :counts="counts"
         @add-point="addPoint"
+        @delete-point="deletePoint"
         @delete-count="deleteCount" />
       </b-col>
     </b-row>
@@ -19,7 +20,7 @@
 <script>
 import CountsList from '~/components/CountsList.vue'
 import  AddToList from '~/components/AddToList.vue'
-import { putCount, removeDoc, addPointToCount, fetchAllCounts }  from '~/plugins/pouchdb.js'
+import { putCount, removeDoc, removePoint, addPointToCount, fetchAllCounts }  from '~/plugins/pouchdb.js'
 
 export default {
   components: {
@@ -47,6 +48,10 @@ export default {
     async addPoint(pointName, countId) {
       await addPointToCount(pointName, countId)
       this.counts = await fetchAllCounts()
+    },
+    deletePoint(pointId) {
+      removePoint(pointId)
+      this.counts = fetchAllCounts()
     },
     async refreshDocs() {
       this.counts = await fetchAllCounts()
