@@ -34,7 +34,7 @@ export default {
     },
     async savePoint(newPointName) {
       this.point.name = newPointName
-      await savePoint(this.point)
+      await saveDoc(this.point)
       this.$router.push('/')
     }
   }

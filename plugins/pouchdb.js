@@ -68,10 +68,7 @@ const putCount = async (countName) => {
 
 const addPointToCount = async (point) => {
   const count = await db.get(point.countId)
-  console.log('count:', count);
   count.points.push(point._id)
-  console.log('count points ref:', count.points)
-  console.log('point:', point);
   try {
     await db.put(count)
     await db.put(point)
@@ -90,7 +87,7 @@ const removePoint = async (pointId) => {
   try {
     const point = await db.get(pointId)
     const count = await db.get(point.countId)
-    const refIndex = count.points.map( point => point._id).indexOf(pointId)
+    const refIndex = count.points.indexOf(pointId)
     if (refIndex !== -1) { count.points.splice(refIndex, 1) }
     await db.put(count)
     await db.remove(point)
