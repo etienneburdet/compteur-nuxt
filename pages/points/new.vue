@@ -1,11 +1,9 @@
 <template lang="html">
-  <div class="container h-100">
     <EditPoint
       :point="point"
       @add-button="addButton"
       @save-point="savePoint"
     />
-  </div>
 </template>
 
 <script>
