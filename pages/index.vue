@@ -49,9 +49,9 @@ export default {
       await addPointToCount(pointName, countId)
       this.counts = await fetchAllCounts()
     },
-    deletePoint(pointId) {
-      removePoint(pointId)
-      this.counts = fetchAllCounts()
+    async deletePoint(pointId) {
+      await removePoint(pointId)
+      this.counts = await fetchAllCounts()
     },
     async refreshDocs() {
       this.counts = await fetchAllCounts()
