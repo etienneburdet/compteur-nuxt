@@ -1,6 +1,6 @@
 <template lang="html">
-  <b-container>
-    <b-row class="bg-secondary py-2 d-flex justify-content-center">
+  <b-container class="d-flex flex-column">
+    <b-row class="bg-secondary py-2 justify-content-center">
       <b-form-input v-model="newPointName"></b-form-input>
     </b-row>
     <b-row class="flex-grow-1 align-items-end">
@@ -54,4 +54,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+  .container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 </style>

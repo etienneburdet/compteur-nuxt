@@ -1,6 +1,6 @@
 <template lang="html">
   <b-container>
-    <b-row class="bg-secondary py-2 d-flex justify-content-center">
+    <b-row class="bg-secondary py-2 justify-content-center">
       <p class="text-light">{{ point.name }}</p>
     </b-row>
     <b-row class="flex-grow-1 align-items-end">
