@@ -64,6 +64,7 @@ export default {
     },
     async endCount() {
       saveDoc(this.point)
+      this.$router.push('/')
     }
   }
 }
