@@ -28,7 +28,6 @@ export default {
     }
   },
   async created() {
-    console.log('fetch point:', this.pointId);
     this.point = await getDoc(this.pointId)
   }
 }

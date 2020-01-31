@@ -1,5 +1,4 @@
 import PouchDB from 'pouchdb'
-import Vue     from 'vue'
 
 const db = new PouchDB('comptages');
 const cloudantDB = new PouchDB(process.env.cloudantURL);

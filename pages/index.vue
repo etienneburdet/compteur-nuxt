@@ -8,10 +8,10 @@
     <b-row class="justify-content-center">
       <b-col md="8" lg="6">
         <CountsList
-        :counts="counts"
-        @add-point="addPoint"
-        @delete-point="deletePoint"
-        @delete-count="deleteCount" />
+          :counts="counts"
+          @add-point="addPoint"
+          @delete-point="deletePoint"
+          @delete-count="deleteCount" />
       </b-col>
     </b-row>
   </b-container>

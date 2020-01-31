@@ -2,8 +2,7 @@
     <EditPoint
       :point="point"
       @add-button="addButton"
-      @save-point="savePoint"
-    />
+      @save-point="savePoint" />
 </template>
 
 <script>
@@ -32,9 +31,8 @@ export default {
     addButton(newButtonName) {
       addButtonToPoint(this.point, newButtonName)
     },
-    async savePoint(newPointName) {
-      this.point.name = newPointName
-      await saveDoc(this.point)
+    async savePoint(editedPoint) {
+      await saveDoc(editedPoint)
       this.$router.push('/')
     }
   }
