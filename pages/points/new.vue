@@ -27,7 +27,8 @@ export default {
     addButton(newButtonName) {
       addButtonToPoint(this.point, newButtonName)
     },
-    savePoint() {
+    savePoint(newPointName) {
+      this.point.name = newPointName
       addPointToCount(this.point.countId, this.point)
       this.$router.push('/')
     }

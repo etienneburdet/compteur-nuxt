@@ -1,14 +1,16 @@
 <template lang="html">
   <b-container>
     <b-row class="bg-secondary py-2 d-flex justify-content-center">
-      <p class="text-light">{{ point.name }}</p>
+      <b-form-input v-model="newPointName"></b-form-input>
     </b-row>
-    <b-row>
+    <b-row class="flex-grow-1 align-items-end">
       <ButtonCounter
       v-for="(button, index) in point.buttons"
       :key="button._id"
       :button="button"
       />
+    </b-row>
+    <b-row>
       <b-input-group class="mt-3">
         <b-form-input v-model="newButtonName"></b-form-input>
         <b-input-group-append>
@@ -20,12 +22,11 @@
       </b-input-group>
       <b-button
         variant="primary"
-        @click="$emit('save-point')"
+        @click="$emit('save-point', newPointName)"
         >
         Sauvegarder
       </b-button>
     </b-row>
-
   </b-container>
 </template>
 
@@ -39,7 +40,8 @@ export default {
   props: ["point"],
   data() {
     return {
-      newButtonName: "Nouveau Bouton"
+      newButtonName: "Nouveau Bouton",
+      newPointName: "Nouveau Point"
     }
   },
   methods: {
