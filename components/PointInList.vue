@@ -18,8 +18,19 @@
 </template>
 
 <script>
+import { getDoc } from '~/plugins/pouchdb.js'
+
 export default {
-  props: ['point']
+  props: ['pointId'],
+  data() {
+    return {
+      point: {}
+    }
+  },
+  async created() {
+    console.log('fetch point:', this.pointId);
+    this.point = await getDoc(this.pointId)
+  }
 }
 </script>
 

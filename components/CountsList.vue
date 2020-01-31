@@ -15,9 +15,9 @@
         <b-card-body class="p-0">
           <b-list-group>
             <PointInList
-              v-for="pointRef in count.points" :key="pointRef._id"
-              :point="pointRef"
-              @delete-point="$emit('delete-point', pointRef._id)"
+              v-for="pointRef in count.points" :key="pointRef"
+              :pointId="pointRef"
+              @delete-point="$emit('delete-point', pointRef)"
             />
             <AddPoint :countId="count._id"></AddPoint>
           </b-list-group>
@@ -32,12 +32,19 @@ import AddToList from '~/components/AddToList.vue'
 import AddPoint from '~/components/AddPoint.vue'
 import PointInList from '~/components/PointInList.vue'
 
+import { getDoc } from '~/plugins/pouchdb.js'
+
 export default {
   props:  ['counts'],
   components: {
     AddToList,
     AddPoint,
     PointInList
+  },
+  computed: {
+    async getPoint(pointRef) {
+      return getDoc(pointRef)
+    }
   }
 }
 </script>

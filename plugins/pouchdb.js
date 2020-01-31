@@ -56,15 +56,6 @@ const fetchAllCounts = () => {
       .catch(er => console.log(er));
 }
 
-const getDoc = async (id) => {
-  try {
-    const doc = await db.get(id)
-    return doc
-  } catch(err) {
-    console.error(err);
-  }
-}
-
 const putCount = async (countName) => {
   const count = getNewCount(countName)
   try {
@@ -75,17 +66,15 @@ const putCount = async (countName) => {
   }
 }
 
-const addPointToCount = async (countId, point) => {
-  const count = await db.get(countId)
-  const pointRef = {
-    _id: point._id,
-    name: point.name
-  }
-  count.points.push(pointRef)
+const addPointToCount = async (point) => {
+  const count = await db.get(point.countId)
+  console.log('count:', count);
+  count.points.push(point._id)
+  console.log('count points ref:', count.points)
+  console.log('point:', point);
   try {
     await db.put(count)
     await db.put(point)
-    return point._id
   }
   catch(err) {
     console.error(err)
@@ -116,6 +105,15 @@ const saveDoc = async (doc) => {
 
 const removeDoc = async (doc) => {
   await db.remove(doc)
+}
+
+const getDoc = async (id) => {
+  try {
+    const doc = await db.get(id)
+    return doc
+  } catch(err) {
+    console.error(err);
+  }
 }
 
 export { saveDoc, getDoc, removeDoc, removePoint, getNewPoint, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }
