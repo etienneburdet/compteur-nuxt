@@ -77,17 +77,14 @@ const addPointToCount = async (point) => {
   }
 }
 
-const addButtonToPoint = (point, buttonName) => {
-  const button = getNewButton(buttonName)
-  point.buttons.push(button)
-}
-
 const removePoint = async (pointId) => {
   try {
     const point = await db.get(pointId)
     const count = await db.get(point.countId)
     const refIndex = count.points.indexOf(pointId)
-    if (refIndex !== -1) { count.points.splice(refIndex, 1) }
+    if (refIndex !== -1) {
+      count.points.splice(refIndex, 1)
+    }
     await db.put(count)
     await db.remove(point)
   } catch (e) {
@@ -112,4 +109,4 @@ const getDoc = async (id) => {
   }
 }
 
-export { saveDoc, getDoc, removeDoc, removePoint, getNewPoint, putCount, addPointToCount, addButtonToPoint, fetchAllCounts }
+export { saveDoc, getDoc, removeDoc, removePoint, getNewPoint, getNewButton, putCount, addPointToCount, fetchAllCounts }

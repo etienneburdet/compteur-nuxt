@@ -10,16 +10,11 @@
         v-model="button.name" />
     </b-row>
     <b-row>
-      <b-input-group class="mt-3">
-        <b-form-input v-model="newButtonName"></b-form-input>
-        <b-input-group-append>
-          <b-button
-            variant="secondary"
-            @click="addButton">
-            Ajouter un bouton
-          </b-button>
-        </b-input-group-append>
-      </b-input-group>
+      <b-button
+        variant="secondary"
+        @click="addButton">
+        Ajouter un bouton
+      </b-button>
       <b-button
         variant="primary"
         @click="$emit('save-point', editedPoint)">
@@ -32,6 +27,8 @@
 <script>
 import ButtonCounterEdit from '~/components/ButtonCounterEdit.vue'
 
+import { getDoc, getNewButton } from '~/plugins/pouchdb.js'
+
 export default {
   components: {
     ButtonCounterEdit
@@ -39,14 +36,13 @@ export default {
   props: ["point"],
   data() {
     return {
-      newButtonName: "Nouveau Bouton",
       editedPoint: this.point
     }
   },
   methods: {
     addButton() {
-      this.$emit('add-button', this.newButtonName)
-      this.newButtonName = "Nouveau Bouton"
+      const newButton = getNewButton()
+      this.editedPoint.buttons.push(newButton)
     }
   }
 }
