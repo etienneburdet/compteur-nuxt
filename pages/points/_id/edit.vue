@@ -19,9 +19,11 @@ export default {
       point: {}
     }
   },
-  async created() {
+  async asyncData({ params }) {
       try {
-        this.point = await getDoc(this.$route.params.id)
+        const point = await getDoc(params.id)
+        console.log('edit page point', point);
+        return { point: point }
       }
       catch(err) {
         console.error(err);
