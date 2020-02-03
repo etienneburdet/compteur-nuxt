@@ -42,9 +42,10 @@ export default {
       point: {}
     }
   },
-  async created() {
+  async asyncData({ params }) {
       try {
-        this.point = await getDoc(this.$route.params.id)
+        const point = await getDoc(params.id)
+        return { point: point }
       }
       catch(err) {
         console.error(err);

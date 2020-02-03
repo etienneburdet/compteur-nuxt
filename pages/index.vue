@@ -33,8 +33,9 @@ export default {
       counts: []
     }
   },
-  async created() {
-    this.counts = await fetchAllCounts()
+  async asyncData() {
+    const counts = await fetchAllCounts()
+    return { counts: counts }
   },
   methods: {
     async addCount() {
