@@ -6,21 +6,28 @@
     <b-row class="flex-grow-1"></b-row>
     <b-row class="flex-wrap-reverse">
       <ButtonCounterEdit
-      v-for="(button, index) in editedPoint.buttons"
-      :key="button._id"
-      v-model="button.name"
-      @delete-button="deleteButton(index)"/>
+        v-for="(button, index) in editedPoint.buttons"
+        :key="button._id"
+        v-model="button.name"
+        @delete-button="deleteButton(index)"/>
       <b-col cols="6" class="p-0 my-2">
         <b-button
-        variant="outline-secondary"
-        class="btn btn-outline-dark btn-block h-100"
-        @click="addButton">
-        Ajouter un bouton
-      </b-button>
+          variant="outline-secondary"
+          class="btn btn-outline-dark btn-block h-100"
+          @click="addButton">
+          <p>Ajouter un bouton</p>
+          <b-button
+            disabled
+            variant="secondary"
+            class="my-1">
+            <fa icon="trash-alt"/>
+          </b-button>
+        </b-button>
     </b-col>
     </b-row>
     <b-row>
       <b-button
+        class="btn-block"
         variant="primary"
         @click="$emit('save-point', editedPoint)">
         Sauvegarder

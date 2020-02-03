@@ -1,26 +1,26 @@
 <template lang="html">
-  <b-container>
+  <b-container class="mx-auto p-0">
     <b-row class="bg-secondary py-2 justify-content-center">
       <p class="text-light">{{ point.name }}</p>
     </b-row>
     <b-row class="flex-grow-1 align-items-end">
       <ButtonCounter
-        v-for="(button, index) in point.buttons"
-        :key="button._id"
-        :button="button"
-        @clicked="registerClick(index)"
+      v-for="(button, index) in point.buttons"
+      :key="button._id"
+      :button="button"
+      @clicked="registerClick(index)"
       />
     </b-row>
     <b-row>
       <b-button
-        variant="primary"
-        class="d-md-none d-md-block btn-block py-3"
-        @click="endCount" >
-        Terminer
-      </b-button>
-      <DownloadCSV
+      variant="primary"
+      class="d-md-none btn-block py-3"
+      @click="endCount" >
+      Terminer
+    </b-button>
+    <DownloadCSV
       :point="point"
-      class="d-none d-md-block"
+      class="d-none d-md-block btn-block"
       />
     </b-row>
   </b-container>

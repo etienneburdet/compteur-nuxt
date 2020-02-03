@@ -4,7 +4,7 @@
       <p> {{ button.name }} </p>
       <h1 class="display-5">{{ counter }}</h1>
     </button>
-    <div class="card d-none d-md-block p-10">
+    <div class="card d-none d-md-block text-center">
       <p class="card-title">{{ button.name }}</p>
       <h5 class="card-title"> {{ counter }} </h5>
     </div>
