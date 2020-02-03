@@ -11,7 +11,6 @@
           <fa icon="trash-alt"/>
         </b-button>
     </b-button>
-
   </b-col>
 </template>
 
