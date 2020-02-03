@@ -1,7 +1,6 @@
 <template lang="html">
     <EditPoint
       :point="point"
-      @add-button="addButton"
       @save-point="savePoint" />
 </template>
 

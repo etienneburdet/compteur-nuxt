@@ -4,7 +4,14 @@
         <input
           :value="value"
           @input="$emit('input', $event.target.value)">
+        <b-button
+          variant="primary"
+          @click="$emit('delete-button')"
+          class="my-1">
+          <fa icon="trash-alt"/>
+        </b-button>
     </b-button>
+
   </b-col>
 </template>
 

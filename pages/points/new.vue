@@ -1,7 +1,6 @@
 <template lang="html">
     <EditPoint
       :point="point"
-      @add-button="addButton"
       @save-point="savePoint" />
 </template>
 
@@ -23,9 +22,6 @@ export default {
     this.point = getNewPoint('Nouveau Point', this.$route.params.countId)
   },
   methods: {
-    addButton(newButtonName) {
-      addButtonToPoint(this.point, newButtonName)
-    },
     async savePoint(editedPoint) {
       await addPointToCount(editedPoint)
       this.$router.push('/')

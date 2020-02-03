@@ -5,9 +5,10 @@
     </b-row>
     <b-row class="flex-grow-1 align-items-end">
       <ButtonCounterEdit
-        v-for="button in editedPoint.buttons"
+        v-for="(button, index) in editedPoint.buttons"
         :key="button._id"
-        v-model="button.name" />
+        v-model="button.name"
+        @delete-button="deleteButton(index)"/>
     </b-row>
     <b-row>
       <b-button
@@ -41,8 +42,11 @@ export default {
   },
   methods: {
     addButton() {
-      const newButton = getNewButton()
+      const newButton = getNewButton('Nouveau Bouton')
       this.editedPoint.buttons.push(newButton)
+    },
+    deleteButton(index) {
+      this.editedPoint.buttons.splice(index, 1)
     }
   }
 }
